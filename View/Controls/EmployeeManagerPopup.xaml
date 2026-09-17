@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="ActiBoard.View.Controls.EmployeeManagerPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border Background="White"
+            CornerRadius="20"
+            Padding="20"
+            Width="900"
+            Height="650">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tilbage -->
+            <Button Content="← Administration"
+                    HorizontalAlignment="Left"
+                    Width="170"
+                    Height="45"
+                    FontSize="18"
+                    Command="{Binding BackToAdministrationCommand}"/>
+
+            <!-- Luk -->
+            <Button Content="✕"
+                    HorizontalAlignment="Right"
+                    Width="45"
+                    Height="45"
+                    FontSize="20"
+                    Command="{Binding ClosePopupCommand}"/>
+
+            <!-- Titel -->
+            <TextBlock Text="Medarbejdere"
+                       FontSize="34"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Ny medarbejder -->
+            <Button Grid.Row="1"
+                    Margin="0,25,0,20"
+                    Width="220"
+                    Height="55"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Content="+ Ny medarbejder"
+                    Command="{Binding ShowEmployeeEditorPopupCommand}"/>
+
+            <!-- Liste -->
+            <ListBox Grid.Row="2"
+                     ItemsSource="{Binding Employees}">
+
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border BorderBrush="#DDDDDD"
+                                BorderThickness="1"
+                                Margin="5"
+                                CornerRadius="10"
+                                Padding="10">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="90"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding EmployeeImagePath}"
+                                       Width="60"
+                                       Height="60"/>
+
+                                <TextBlock Grid.Column="1"
+                                           VerticalAlignment="Center"
+                                           FontSize="22"
+                                           Text="{Binding Name}"/>
+
+                                <Button Grid.Column="2"
+                                        Margin="5"
+                                        Content="✏"
+                                        FontSize="22"
+                                        Command="{Binding DataContext.ShowEmployeeEditorPopupCommand,
+                                                  RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                        CommandParameter="{Binding}"/>
+
+                                <Button Grid.Column="3"
+                                        Margin="5"
+                                        Content="🗑"
+                                        FontSize="22"
+                                        Command="{Binding DataContext.ShowDeleteEmployeeConfirmationCommand,
+                                                    RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                        CommandParameter="{Binding}"/>
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

@@ -1,0 +1,32 @@
+﻿[
+  {
+    "id": "default",
+    "name": "Hverdag",
+    "isActive": true
+  },
+  {
+    "id": "halloween",
+    "name": "Halloween",
+    "isActive": false
+  },
+  {
+    "id": "rekorduge",
+    "name": "Rekorduge",
+    "isActive": false
+  },
+  {
+    "id": "fastelavn",
+    "name": "Fastelavn",
+    "isActive": false
+  },
+  {
+    "id": "åbenthus",
+    "name": "Åbent hus",
+    "isActive": false
+  },
+  {
+    "id": "juleklippedag",
+    "name": "Juleklippedag",
+    "isActive": false
+  }
+]

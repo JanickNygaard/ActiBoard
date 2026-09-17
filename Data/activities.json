@@ -1,0 +1,24 @@
+﻿[
+  {
+    "name": "Stikbold",
+    "activityImagePath": "/Images/Activities/Stikbold.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Perler",
+    "activityImagePath": "/Images/Activities/Perler.png",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Snobrød",
+    "activityImagePath": "/Images/Activities/Snobroed.png",
+    "locationNames": [
+      "Byggeren"
+    ]
+  }
+]  

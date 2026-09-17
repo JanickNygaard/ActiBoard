@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="ActiBoard.View.Controls.EmployeeEditorPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:ActiBoard.View.Controls">
+
+    <Border Background="White"
+            Width="700"
+            Height="600"
+            Padding="30"
+            CornerRadius="20">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid>
+                <Button Content="← Medarbejdere"
+                        HorizontalAlignment="Left"
+                        Width="175"
+                        Height="45"
+                        FontSize="18"
+                        Command="{Binding BackToEmployeeManagerCommand}"/>
+
+                <TextBlock Text="Medarbejder"
+                           FontSize="34"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+
+                <Button Content="✕"
+                        HorizontalAlignment="Right"
+                        Width="45"
+                        Height="45"
+                        FontSize="20"
+                        Command="{Binding ClosePopupCommand}"/>
+            </Grid>
+
+            <!-- Formular -->
+            <StackPanel Grid.Row="1"
+                        Width="500"
+                        Margin="0,35,0,20">
+
+                <TextBlock Text="Navn"
+                           FontSize="20"
+                           FontWeight="SemiBold"/>
+
+                <TextBox x:Name="EmployeeNameTextBox"
+                    Text="{Binding EmployeeEditorName,
+                        UpdateSourceTrigger=PropertyChanged}"
+         Height="55"
+         FontSize="22"
+         Margin="0,8,0,25"
+         VerticalContentAlignment="Center"
+         Padding="12,0"/>
+
+                <Border Width="180"
+        Height="180"
+        BorderBrush="#DDDDDD"
+        BorderThickness="1"
+        CornerRadius="15"
+        HorizontalAlignment="Center"
+        Margin="0,10">
+
+                    <Image Source="{Binding EmployeeEditorImagePath}"
+           Stretch="UniformToFill"/>
+                </Border>
+
+                <Button Content="Vælg billede"
+        Width="190"
+        Height="50"
+        Margin="0,15,0,0"
+        HorizontalAlignment="Center"
+        FontSize="19"
+        Command="{Binding SelectEmployeeImageCommand}"/>
+            </StackPanel>
+
+            <!-- Gem -->
+            <Button Grid.Row="2"
+                    Content="Gem medarbejder"
+                    Width="220"
+                    Height="55"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    HorizontalAlignment="Center"
+                    Command="{Binding SaveEmployeeCommand}"/>
+            
+        </Grid>
+        
+    </Border>
+</UserControl>

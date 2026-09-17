@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\activities.json" />
+    <None Remove="Data\employees.json" />
+    <None Remove="Data\locations.json" />
+    <None Remove="Data\themes.json" />
+    <None Remove="Data\Themes\default\locations.json" />
+    <None Remove="Images\Activities\Bygge huse.png" />
+    <None Remove="Images\Activities\Fodbold.png" />
+    <None Remove="Images\Activities\FriLeg.png" />
+    <None Remove="Images\Activities\Gave.png" />
+    <None Remove="Images\Activities\Hockey.png" />
+    <None Remove="Images\Activities\HoevdingeBold.jpg" />
+    <None Remove="Images\Activities\Hoevdingebold.png" />
+    <None Remove="Images\Activities\Male.png" />
+    <None Remove="Images\Activities\Perler.jpg" />
+    <None Remove="Images\Activities\Smykker.webp" />
+    <None Remove="Images\Activities\Snobroed.jpg" />
+    <None Remove="Images\Activities\Stikbold.PNG" />
+    <None Remove="Images\Activities\Suppe.png" />
+    <None Remove="Images\Activities\Tegne.png" />
+    <None Remove="Images\Byggeren.HEIC" />
+    <None Remove="Images\Employees\Janick.JPG" />
+    <None Remove="Images\Employees\Janick.PNG" />
+    <None Remove="Images\Employees\Sofie.jpg" />
+    <None Remove="Images\Employees\Sofie.PNG" />
+    <None Remove="Images\Gym1.jpg" />
+    <None Remove="Images\Gym2.jpg" />
+    <None Remove="Images\Krea.HEIC" />
+    <None Remove="Images\KTM LOGO.png" />
+    <None Remove="Images\Locations\Byggeren.HEIC" />
+    <None Remove="Images\Locations\Byggeren.jpg" />
+    <None Remove="Images\Locations\Gym1.jpg" />
+    <None Remove="Images\Locations\Gym2.jpg" />
+    <None Remove="Images\Locations\Krea.HEIC" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\activities.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\employees.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\locations.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\themes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Themes\default\activities.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Themes\default\locations.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Activities\Bygge huse.png" />
+    <Resource Include="Images\Activities\Fodbold.png" />
+    <Resource Include="Images\Activities\FriLeg.png" />
+    <Resource Include="Images\Activities\Gave.png" />
+    <Resource Include="Images\Activities\Hockey.png" />
+    <Resource Include="Images\Activities\Hoevdingebold.png" />
+    <Resource Include="Images\Activities\Male.png" />
+    <Resource Include="Images\Activities\Perler.jpg" />
+    <Resource Include="Images\Activities\Smykker.webp" />
+    <Resource Include="Images\Activities\Snobroed.jpg" />
+    <Resource Include="Images\Activities\Stikbold.PNG" />
+    <Resource Include="Images\Activities\Suppe.png" />
+    <Resource Include="Images\Activities\Tegne.png" />
+    <Resource Include="Images\Employees\Janick.PNG" />
+    <Resource Include="Images\Employees\Sofie.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\KTM LOGO.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Locations\Byggeren.jpg" />
+    <Resource Include="Images\Locations\Gym1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Locations\Gym2.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Locations\Krea.HEIC">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\Stikbold.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="ActiBoard.View.Controls.PopupHost"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:ActiBoard.View.Controls"
+             xmlns:model="clr-namespace:ActiBoard.Model">
+
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Visibility" Value="Collapsed"/>
+
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsPopupOpen}"
+                                 Value="True">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
+        <ContentControl>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+                                     Value="{x:Static model:PopupType.Unlock}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:UnlockPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.ActivityEditor}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:ActivityEditorPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.Administration}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:AdministrationPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.ActivityManager}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:ActivityManagerPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.Confirmation}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:ConfirmationPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.EmployeeManager}">
+
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:EmployeeManagerPopup/>
+                                </Setter.Value>
+                            </Setter>
+
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.EmployeeEditor}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:EmployeeEditorPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.LocationManager}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:LocationManagerPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.LocationEditor}">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:LocationEditorPopup/>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.ThemeManager}">
+
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:ThemeManagerPopup/>
+                                </Setter.Value>
+                            </Setter>
+
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+             Value="{x:Static model:PopupType.ThemeEditor}">
+
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <controls:ThemeEditorPopup/>
+                                </Setter.Value>
+                            </Setter>
+
+                        </DataTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+
+        <Grid x:Name="KeyboardOverlay"
+              Visibility="Collapsed"
+              Panel.ZIndex="100">
+
+            <!-- Tryk uden for tastaturet kan ikke ramme editoren -->
+
+            <Border Background="#66000000"/>
+
+            <controls:OnScreenKeyboard
+                x:Name="SharedKeyboard"
+                Width="950"
+                MaxWidth="950"
+                Margin="30"
+                VerticalAlignment="Bottom"
+                Done="SharedKeyboard_Done"/>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,108 @@
+﻿[
+  {
+    "name": "",
+    "activityImagePath": "",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2",
+      "Byggeren",
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Stikbold",
+    "activityImagePath": "/Images/Activities/Stikbold.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Perler",
+    "activityImagePath": "/Images/Activities/Perler.jpg",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Snobrød",
+    "activityImagePath": "/Images/Activities/Snobroed.jpg",
+    "locationNames": [
+      "Byggeren"
+    ]
+  },
+  {
+    "name": "Bygge huse",
+    "activityImagePath": "/Images/Activities/Bygge huse.png",
+    "locationNames": [
+      "Byggeren"
+    ]
+  },
+  {
+    "name": "Fodbold",
+    "activityImagePath": "/Images/Activities/Fodbold.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Fri leg",
+    "activityImagePath": "/Images/Activities/FriLeg.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Gave",
+    "activityImagePath": "/Images/Activities/Gave.png",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Hockey",
+    "activityImagePath": "/Images/Activities/Hockey.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Høvdingebold",
+    "activityImagePath": "/Images/Activities/Hoevdingebold.png",
+    "locationNames": [
+      "Gymnastiksal 1",
+      "Gymnastiksal 2"
+    ]
+  },
+  {
+    "name": "Male",
+    "activityImagePath": "/Images/Activities/Male.png",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Smykker",
+    "activityImagePath": "/Images/Activities/Smykker.webp",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  },
+  {
+    "name": "Suppe",
+    "activityImagePath": "/Images/Activities/Suppe.png",
+    "locationNames": [
+      "Byggeren"
+    ]
+  },
+  {
+    "name": "Tegne",
+    "activityImagePath": "/Images/Activities/Tegne.png",
+    "locationNames": [
+      "Kreaværksted"
+    ]
+  }
+]  
