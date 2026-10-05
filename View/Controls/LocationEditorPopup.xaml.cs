@@ -1,4 +1,4 @@
-﻿using ActiBoard.Model;
+using ActiBoard.Model;
 using ActiBoard.ViewModel;
 using Microsoft.Win32;
 using System;
@@ -12,7 +12,7 @@ namespace ActiBoard.View.Controls
     {
         public event KeyboardRequestedEventHandler? KeyboardRequested;
 
-        private string? _selectedImagePath;
+
 
         public LocationEditorPopup()
         {
@@ -39,7 +39,7 @@ namespace ActiBoard.View.Controls
                 return;
             }
 
-            _selectedImagePath = dialog.FileName;
+
 
             // Viser det valgte billede med det samme i editoren.
             viewModel.LocationEditorImagePath = dialog.FileName;
@@ -66,7 +66,7 @@ namespace ActiBoard.View.Controls
             bool isEditing = viewModel.SelectedLocation is not null;
 
             if (!isEditing &&
-                string.IsNullOrWhiteSpace(_selectedImagePath))
+                string.IsNullOrWhiteSpace(viewModel.LocationEditorImagePath))
             {
                 MessageBox.Show("Du skal vælge et billede.");
                 return;
@@ -79,10 +79,10 @@ namespace ActiBoard.View.Controls
 
                 // Der kopieres kun et nyt billede, hvis brugeren
                 // faktisk har valgt et nyt.
-                if (!string.IsNullOrWhiteSpace(_selectedImagePath))
+                if (File.Exists(imagePath) && (!isEditing || imagePath != viewModel.SelectedLocation?.LocationImagePath))
                 {
                     imagePath =
-                        CopyImageToAppFolder(_selectedImagePath);
+                        CopyImageToAppFolder(imagePath);
                 }
 
                 if (isEditing)
@@ -120,7 +120,7 @@ namespace ActiBoard.View.Controls
 
         private void ClearForm()
         {
-            _selectedImagePath = null;
+
 
             if (DataContext is not LocationViewModel viewModel)
             {

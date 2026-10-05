@@ -1,4 +1,4 @@
-﻿using ActiBoard.Commands;
+using ActiBoard.Commands;
 using ActiBoard.Model;
 using ActiBoard.Repositories;
 using System.Collections.ObjectModel;
@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace ActiBoard.ViewModel
 {
-    public class LocationViewModel : INotifyPropertyChanged
+    public partial class LocationViewModel : INotifyPropertyChanged
     {
         private ActivityRepository _activityRepository;
         private readonly EmployeeRepository _employeeRepository;
@@ -486,6 +486,7 @@ namespace ActiBoard.ViewModel
 
         public LocationViewModel()
         {
+            InitializeImageGallery();
             // Temaerne skal indlæses først
             _themeRepository = new ThemeRepository();
 

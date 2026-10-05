@@ -1,0 +1,51 @@
+<UserControl x:Class="ActiBoard.View.Controls.ImageGalleryPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#99000000">
+        <Border Background="White" CornerRadius="20" Padding="24"
+                Margin="30" MaxWidth="1050" MaxHeight="750">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding GalleryTitle}" FontSize="30"
+                           FontWeight="Bold" TextWrapping="Wrap" Margin="0,0,0,16"/>
+                <TextBlock Grid.Row="1" Text="{Binding GalleryMessage}"
+                           TextWrapping="Wrap" FontSize="18" Margin="0,0,0,12"/>
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding GalleryImages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Width="210" Height="190" Margin="8" Padding="10"
+                                        Background="#F5F7FA" BorderBrush="#D4DCE5"
+                                        Command="{Binding DataContext.SelectGalleryImageCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"
+                                        AutomationProperties.Name="{Binding Name}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding ImagePath}" Stretch="Uniform" Margin="0,0,0,8"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="18"
+                                                   TextWrapping="Wrap" TextAlignment="Center"/>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+                <Button Grid.Row="3" Content="← Tilbage" Width="180" Height="52"
+                        FontSize="20" Margin="0,20,0,0" HorizontalAlignment="Center"
+                        Command="{Binding CloseImageGalleryCommand}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ActiBoard.View.Controls.PopupHost"
+<UserControl x:Class="ActiBoard.View.Controls.PopupHost"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:ActiBoard.View.Controls"
@@ -128,6 +128,12 @@
 
                         </DataTrigger>
 
+                        <DataTrigger Binding="{Binding CurrentPopup}"
+                                     Value="{x:Static model:PopupType.ImageGallery}">
+                            <Setter Property="Content">
+                                <Setter.Value><controls:ImageGalleryPopup/></Setter.Value>
+                            </Setter>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>
