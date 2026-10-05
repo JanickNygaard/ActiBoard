@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -52,15 +53,12 @@ namespace ActiBoard.View.Controls
                 return;
             }
 
-            bool addToGym1 = viewModel.EditorGym1;
-            bool addToGym2 = viewModel.EditorGym2;
-            bool addToKrea = viewModel.EditorKrea;
-            bool addToByggeren = viewModel.EditorByggeren;
+            var locationNames = viewModel.ActivityEditorLocations
+                .Where(option => option.IsSelected)
+                .Select(option => option.Location.Name)
+                .ToList();
 
-            if (!addToGym1 &&
-                !addToGym2 &&
-                !addToKrea &&
-                !addToByggeren)
+            if (locationNames.Count == 0)
             {
                 MessageBox.Show("Vælg mindst én lokation.");
                 return;
@@ -83,20 +81,6 @@ namespace ActiBoard.View.Controls
                     imagePath = CopyImageToAppFolder(imagePath);
                 }
 
-                var locationNames = new List<string>();
-
-                if (addToGym1)
-                    locationNames.Add("Gymnastiksal 1");
-
-                if (addToGym2)
-                    locationNames.Add("Gymnastiksal 2");
-
-                if (addToKrea)
-                    locationNames.Add("Kreaværksted");
-
-                if (addToByggeren)
-                    locationNames.Add("Byggeren");
-
                 // Her afgør vi, om vi redigerer eller opretter
                 if (isEditing)
                 {
@@ -114,12 +98,7 @@ namespace ActiBoard.View.Controls
                         LocationNames = locationNames
                     };
 
-                    viewModel.AddActivity(
-                        activity,
-                        addToGym1,
-                        addToGym2,
-                        addToKrea,
-                        addToByggeren);
+                    viewModel.AddActivity(activity);
                 }
 
                 ClearForm();
@@ -143,10 +122,8 @@ namespace ActiBoard.View.Controls
             viewModel.ActivityEditorName = "";
             viewModel.ActivityEditorImagePath = "";
 
-            viewModel.EditorGym1 = false;
-            viewModel.EditorGym2 = false;
-            viewModel.EditorKrea = false;
-            viewModel.EditorByggeren = false;
+            foreach (var option in viewModel.ActivityEditorLocations)
+                option.IsSelected = false;
         }
 
         private string CopyImageToAppFolder(string sourcePath)

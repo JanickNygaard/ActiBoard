@@ -95,21 +95,19 @@
                                FontSize="18"
                                FontWeight="SemiBold"/>
 
-                    <CheckBox Content="Gymnastiksal 1"
-          IsChecked="{Binding EditorGym1}"
-          FontSize="18"/>
-
-                    <CheckBox Content="Gymnastiksal 2"
-          IsChecked="{Binding EditorGym2}"
-          FontSize="18"/>
-
-                    <CheckBox Content="Kreaværksted"
-          IsChecked="{Binding EditorKrea}"
-          FontSize="18"/>
-
-                    <CheckBox Content="Byggeren"
-          IsChecked="{Binding EditorByggeren}"
-          FontSize="18"/>
+                    <ScrollViewer MaxHeight="170" VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled" Margin="0,8,0,0">
+                        <ItemsControl ItemsSource="{Binding ActivityEditorLocations}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox Content="{Binding Location.Name}"
+                                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                              FontSize="18" MinHeight="40"
+                                              VerticalContentAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </StackPanel>
 
                 <Button Grid.Row="4"

@@ -71,12 +71,12 @@
     <Resource Include="Images\Activities\FriLeg.png" />
     <Resource Include="Images\Activities\Gave.png" />
     <Resource Include="Images\Activities\Hockey.png" />
-    <Resource Include="Images\Activities\Hoevdingebold.png" />
+    <Resource Include="Images\Activities\Hoevdingebold-klassisk.png" />
     <Resource Include="Images\Activities\Male.png" />
-    <Resource Include="Images\Activities\Perler.jpg" />
-    <Resource Include="Images\Activities\Smykker.webp" />
-    <Resource Include="Images\Activities\Snobroed.jpg" />
-    <Resource Include="Images\Activities\Stikbold.PNG" />
+    <Resource Include="Images\Activities\Perler.png" />
+    <Resource Include="Images\Activities\Smykker.png" />
+    <Resource Include="Images\Activities\Snobroed.png" />
+    <Resource Include="Images\Activities\Stikbold-klassisk.png" />
     <Resource Include="Images\Activities\Suppe.png" />
     <Resource Include="Images\Activities\Tegne.png" />
     <Resource Include="Images\Employees\Janick.PNG" />

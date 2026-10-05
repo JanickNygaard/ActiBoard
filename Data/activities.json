@@ -1,7 +1,7 @@
-﻿[
+[
   {
     "name": "Stikbold",
-    "activityImagePath": "/Images/Activities/Stikbold.png",
+    "activityImagePath": "/Images/Activities/Stikbold-klassisk.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -21,4 +21,4 @@
       "Byggeren"
     ]
   }
-]  
+]

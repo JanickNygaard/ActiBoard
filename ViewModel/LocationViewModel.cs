@@ -98,50 +98,7 @@ namespace ActiBoard.ViewModel
             }
         }
 
-        private bool _editorGym1;
-        private bool _editorGym2;
-        private bool _editorKrea;
-        private bool _editorByggeren;
-
-        public bool EditorGym1
-        {
-            get => _editorGym1;
-            set
-            {
-                _editorGym1 = value;
-                OnPropertyChanged(nameof(EditorGym1));
-            }
-        }
-
-        public bool EditorGym2
-        {
-            get => _editorGym2;
-            set
-            {
-                _editorGym2 = value;
-                OnPropertyChanged(nameof(EditorGym2));
-            }
-        }
-
-        public bool EditorKrea
-        {
-            get => _editorKrea;
-            set
-            {
-                _editorKrea = value;
-                OnPropertyChanged(nameof(EditorKrea));
-            }
-        }
-
-        public bool EditorByggeren
-        {
-            get => _editorByggeren;
-            set
-            {
-                _editorByggeren = value;
-                OnPropertyChanged(nameof(EditorByggeren));
-            }
-        }
+        public ObservableCollection<ActivityLocationOption> ActivityEditorLocations { get; } = new();
 
         private PopupType _currentPopup = PopupType.None;
 
@@ -533,6 +490,8 @@ namespace ActiBoard.ViewModel
             Employees = new ObservableCollection<Employee>(
                 _employeeRepository.GetEmployees());
 
+            InitializeEmployeeDropdown();
+
             Activities = new ObservableCollection<Activity>(
                 _activityRepository.GetActivities());
 
@@ -681,23 +640,15 @@ namespace ActiBoard.ViewModel
                 location.IsOpen = !location.IsOpen;
             }
         }
-        public void AddActivity(Activity activity,bool addToGym1,bool addToGym2,bool addToKrea,bool addToByggeren)
+        public void AddActivity(Activity activity)
         {
             _activityRepository.Add(activity);
             Activities.Add(activity);
 
             foreach (Location location in Locations)
             {
-                bool shouldAdd =
-                    location.Name == "Gymnastiksal 1" && addToGym1 ||
-                    location.Name == "Gymnastiksal 2" && addToGym2 ||
-                    location.Name == "Kreaværksted" && addToKrea ||
-                    location.Name == "Byggeren" && addToByggeren;
-
-                if (shouldAdd)
-                {
+                if (activity.LocationNames.Contains(location.Name))
                     location.AvailableActivities.Add(activity);
-                }
             }
         }
 
@@ -709,6 +660,7 @@ namespace ActiBoard.ViewModel
         private void OpenActivityEditor(object? parameter)
         {
             SelectedActivity = parameter as Activity;
+            PrepareActivityEditor();
 
             CurrentPopup = PopupType.ActivityEditor;
 
@@ -716,33 +668,17 @@ namespace ActiBoard.ViewModel
 
         private void PrepareActivityEditor()
         {
-            if (SelectedActivity is null)
+            ActivityEditorName = SelectedActivity?.Name ?? string.Empty;
+            ActivityEditorImagePath = SelectedActivity?.ActivityImagePath ?? string.Empty;
+            ActivityEditorLocations.Clear();
+
+            foreach (Location location in Locations)
             {
-                ActivityEditorName = "";
-                ActivityEditorImagePath = "";
-
-                EditorGym1 = false;
-                EditorGym2 = false;
-                EditorKrea = false;
-                EditorByggeren = false;
-
-                return;
+                ActivityEditorLocations.Add(new ActivityLocationOption(location)
+                {
+                    IsSelected = SelectedActivity?.LocationNames?.Contains(location.Name) == true
+                });
             }
-
-            ActivityEditorName = SelectedActivity.Name;
-            ActivityEditorImagePath = SelectedActivity.ActivityImagePath;
-
-            EditorGym1 =
-                SelectedActivity.LocationNames.Contains("Gymnastiksal 1");
-
-            EditorGym2 =
-                SelectedActivity.LocationNames.Contains("Gymnastiksal 2");
-
-            EditorKrea =
-                SelectedActivity.LocationNames.Contains("Kreaværksted");
-
-            EditorByggeren =
-                SelectedActivity.LocationNames.Contains("Byggeren");
         }
 
         public void UpdateSelectedActivity(

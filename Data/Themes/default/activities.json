@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "name": "",
     "activityImagePath": "",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Stikbold",
-    "activityImagePath": "/Images/Activities/Stikbold.png",
+    "activityImagePath": "/Images/Activities/Stikbold-klassisk.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -19,14 +19,14 @@
   },
   {
     "name": "Perler",
-    "activityImagePath": "/Images/Activities/Perler.jpg",
+    "activityImagePath": "/Images/Activities/Perler.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Snobrød",
-    "activityImagePath": "/Images/Activities/Snobroed.jpg",
+    "activityImagePath": "/Images/Activities/Snobroed.png",
     "locationNames": [
       "Byggeren"
     ]
@@ -71,7 +71,7 @@
   },
   {
     "name": "Høvdingebold",
-    "activityImagePath": "/Images/Activities/Hoevdingebold.png",
+    "activityImagePath": "/Images/Activities/Hoevdingebold-klassisk.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -86,7 +86,7 @@
   },
   {
     "name": "Smykker",
-    "activityImagePath": "/Images/Activities/Smykker.webp",
+    "activityImagePath": "/Images/Activities/Smykker.png",
     "locationNames": [
       "Kreaværksted"
     ]
@@ -105,4 +105,4 @@
       "Kreaværksted"
     ]
   }
-]  
+]
