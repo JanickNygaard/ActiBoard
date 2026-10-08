@@ -19,7 +19,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="160"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -28,11 +28,13 @@
        Source="{Binding ActiveTheme.BackgroundImagePath}"
        Stretch="UniformToFill"/>
 
-        <!-- Logo -->
+        <controls:AnimatedThemeFrame Grid.RowSpan="2"
+                                     ThemeId="{Binding ActiveTheme.Id}"
+                                     IsHitTestVisible="False"/>
+
+        <!-- Temaoverskrift og logo -->
         <Border Grid.Row="0"
-        Background="White"
-        BorderBrush="#DDDDDD"
-        BorderThickness="0,0,0,1">
+        Background="Transparent">
 
             <Grid>
 
@@ -100,23 +102,46 @@
                     </Button.Style>
                 </Button>
 
-                <TextBlock Text="ActiBoard"
+                <TextBlock Text="{Binding ActiveTheme.Name}"
                            FontSize="60"
                            FontWeight="Bold"
-                           Height="90"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Margin="0,10,40,10"/>
+                           Margin="0,56,40,12">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#172536"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ActiveTheme.Id}" Value="halloween">
+                                    <Setter Property="Foreground" Value="#FFF8EF"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ActiveTheme.Id}" Value="juleklippedag">
+                                    <Setter Property="Foreground" Value="#FFF8EF"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black"
+                                          BlurRadius="6"
+                                          ShadowDepth="0"
+                                          Opacity="0.25"/>
+                    </TextBlock.Effect>
+                </TextBlock>
 
 
 
 
-                <Image Source="/Images/KTM LOGO.png"
-                       Height="90"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Margin="0,10,40,10"
-                       Stretch="Uniform"/>
+                <Border Background="White"
+                        CornerRadius="12"
+                        Padding="20,10"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,10,40,10">
+                    <Image Source="/Images/KTM LOGO.png"
+                           Height="80"
+                           Stretch="Uniform"/>
+                </Border>
 
             </Grid>
 
@@ -124,6 +149,7 @@
 
         <!-- Lokationerne -->
         <ItemsControl Grid.Row="1"
+                      Margin="44,0,44,44"
                       ItemsSource="{Binding Locations}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -135,7 +161,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="LocationCard"
-            Margin="20"
+            Margin="12"
             CornerRadius="20"
             BorderThickness="6"
             ClipToBounds="True"
@@ -164,7 +190,7 @@
                             </Style>
                         </Border.Style>
 
-                        <Grid Height="390">
+                        <Grid>
 
                             <!-- KUN DENNE BUTTON TOGGLER -->
                             <Button x:Name="ToggleButton"
@@ -176,6 +202,8 @@
                             CommandParameter="{Binding}"
                             BorderThickness="0"
                             Background="Transparent"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
                             Padding="0">
 
                                 <Grid>
@@ -184,7 +212,7 @@
 
                                     <Rectangle x:Name="Overlay" Fill="#88000000"/>
 
-                                    <TextBlock Text="{Binding Name}"
+                                    <controls:OutlinedTextBlock Text="{Binding Name}"
                                FontSize="38"
                                FontWeight="Bold"
                                Foreground="White"
@@ -192,7 +220,7 @@
                                VerticalAlignment="Top"
                                Margin="0,20,0,0"/>
 
-                                    <TextBlock x:Name="StatusBadge"
+                                    <controls:OutlinedTextBlock x:Name="StatusBadge"
                                FontSize="26"
                                FontWeight="Bold"
                                Foreground="White"
@@ -201,12 +229,12 @@
                                RenderTransformOrigin="0.5,0.5"
                                Margin="0,85,0,0">
 
-                                        <TextBlock.RenderTransform>
+                                        <controls:OutlinedTextBlock.RenderTransform>
                                             <ScaleTransform ScaleX="1" ScaleY="1"/>
-                                        </TextBlock.RenderTransform>
+                                        </controls:OutlinedTextBlock.RenderTransform>
 
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock">
+                                        <controls:OutlinedTextBlock.Style>
+                                            <Style TargetType="controls:OutlinedTextBlock">
                                                 <Setter Property="Text" Value="🔒 LUKKET"/>
                                                 <Setter Property="Background" Value="#CCB00020"/>
                                                 <Setter Property="Padding" Value="20,8"/>
@@ -217,8 +245,8 @@
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                        </controls:OutlinedTextBlock.Style>
+                                    </controls:OutlinedTextBlock>
                                 </Grid>
                             </Button>
 
@@ -232,15 +260,15 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Aktivitet"
+                                    <controls:OutlinedTextBlock Text="Aktivitet"
                                Foreground="White"
                                FontSize="22"
                                FontWeight="Bold"/>
 
                                     <StackPanel Orientation="Horizontal">
                                         <Image x:Name="ActivityImage"
-                                               Width="120"
-                                        Height="120"
+                                               Width="140"
+                                        Height="140"
                                         Stretch="UniformToFill"
                                         Margin="0,0,10,0"
                                         Opacity="1"
@@ -274,15 +302,15 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock Text="Ansvarlig"
+                                    <controls:OutlinedTextBlock Text="Ansvarlig"
                                Foreground="White"
                                FontSize="22"
                                FontWeight="Bold"/>
 
                                     <StackPanel Orientation="Horizontal">
                                         <Image x:Name="EmployeeImage"
-                                            Width="120"
-                                        Height="120"
+                                            Width="140"
+                                        Height="140"
                                         Stretch="UniformToFill"
                                         Margin="0,0,10,0"
                                         Opacity="1"
@@ -335,11 +363,11 @@
 
                             <Setter TargetName="ActivityImage"
             Property="Width"
-            Value="70"/>
+            Value="80"/>
 
                             <Setter TargetName="ActivityImage"
             Property="Height"
-            Value="70"/>
+            Value="80"/>
 
                             <Setter TargetName="ActivityImage"
             Property="Margin"
@@ -355,11 +383,11 @@
 
                             <Setter TargetName="EmployeeImage"
             Property="Width"
-            Value="70"/>
+            Value="80"/>
 
                             <Setter TargetName="EmployeeImage"
             Property="Height"
-            Value="70"/>
+            Value="80"/>
 
                             <Setter TargetName="EmployeeImage"
             Property="Margin"

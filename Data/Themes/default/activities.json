@@ -11,7 +11,7 @@
   },
   {
     "name": "Stikbold",
-    "activityImagePath": "/Images/Activities/Stikbold-klassisk.png",
+    "activityImagePath": "/Images/Activities/Realistic/Stikbold.PNG",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -19,28 +19,28 @@
   },
   {
     "name": "Perler",
-    "activityImagePath": "/Images/Activities/Perler.png",
+    "activityImagePath": "/Images/Activities/Realistic/Perler.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Snobrød",
-    "activityImagePath": "/Images/Activities/Snobroed.png",
+    "activityImagePath": "/Images/Activities/Realistic/Snobrød.png",
     "locationNames": [
       "Byggeren"
     ]
   },
   {
     "name": "Bygge huse",
-    "activityImagePath": "/Images/Activities/Bygge huse.png",
+    "activityImagePath": "/Images/Activities/Realistic/Bygge huse.png",
     "locationNames": [
       "Byggeren"
     ]
   },
   {
     "name": "Fodbold",
-    "activityImagePath": "/Images/Activities/Fodbold.png",
+    "activityImagePath": "/Images/Activities/Realistic/Fodbold.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -48,7 +48,7 @@
   },
   {
     "name": "Fri leg",
-    "activityImagePath": "/Images/Activities/FriLeg.png",
+    "activityImagePath": "/Images/Activities/Realistic/FriLeg.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -56,14 +56,14 @@
   },
   {
     "name": "Gave",
-    "activityImagePath": "/Images/Activities/Gave.png",
+    "activityImagePath": "/Images/Activities/Realistic/Gave.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Hockey",
-    "activityImagePath": "/Images/Activities/Hockey.png",
+    "activityImagePath": "/Images/Activities/Realistic/Hockey.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -71,7 +71,7 @@
   },
   {
     "name": "Høvdingebold",
-    "activityImagePath": "/Images/Activities/Hoevdingebold-klassisk.png",
+    "activityImagePath": "/Images/Activities/Realistic/Hoevdingebold.png",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -79,28 +79,28 @@
   },
   {
     "name": "Male",
-    "activityImagePath": "/Images/Activities/Male.png",
+    "activityImagePath": "/Images/Activities/Realistic/Male.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Smykker",
-    "activityImagePath": "/Images/Activities/Smykker.png",
+    "activityImagePath": "/Images/Activities/Realistic/Smykker.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Suppe",
-    "activityImagePath": "/Images/Activities/Suppe.png",
+    "activityImagePath": "/Images/Activities/Realistic/Suppe.png",
     "locationNames": [
       "Byggeren"
     ]
   },
   {
     "name": "Tegne",
-    "activityImagePath": "/Images/Activities/Tegne.png",
+    "activityImagePath": "/Images/Activities/Realistic/Tegning.png",
     "locationNames": [
       "Kreaværksted"
     ]

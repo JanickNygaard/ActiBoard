@@ -441,8 +441,9 @@ namespace ActiBoard.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public LocationViewModel()
+        public LocationViewModel(string? settingsDirectory = null)
         {
+            InitializeSettings(settingsDirectory);
             InitializeImageGallery();
             // Temaerne skal indlæses først
             _themeRepository = new ThemeRepository();
@@ -537,7 +538,7 @@ namespace ActiBoard.ViewModel
                 });
 
             ShowSettingsPopupCommand =
-                new RelayCommand(_ => CurrentPopup = PopupType.Settings);
+                new RelayCommand(_ => OpenSettings());
 
             ClosePopupCommand =
                 new RelayCommand(_ => CurrentPopup = PopupType.None);
@@ -621,8 +622,9 @@ namespace ActiBoard.ViewModel
 
         private void Unlock(object parameter)
         {
-            if (parameter is string code && code == "1828")
+            if (parameter is string code && _settingsStore.VerifyPin(code))
             {
+                RegisterInteraction();
                 IsUnlocked = true;
                 CurrentPopup = PopupType.None;
             }
@@ -631,6 +633,7 @@ namespace ActiBoard.ViewModel
         private void Lock(object parameter)
         {
             IsUnlocked = false;
+            CurrentPopup = PopupType.None;
         }
 
         private void ToggleLocation(object parameter)
@@ -793,6 +796,7 @@ namespace ActiBoard.ViewModel
 
         private void ConfirmDelete()
         {
+            if (!BackupBeforeDeletion()) return;
             if (ActivityPendingDeletion is not null)
             {
                 Activity activity = ActivityPendingDeletion;

@@ -1,0 +1,68 @@
+<UserControl x:Class="ActiBoard.View.Controls.SettingsPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:ActiBoard.View.Controls">
+    <Grid Background="#99000000">
+        <Border Width="980" MaxHeight="870" Margin="25" Background="White" CornerRadius="20" Padding="30">
+            <Grid>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <TextBlock Text="Indstillinger" FontSize="32" FontWeight="Bold" Margin="0,0,0,20"/>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock"><Setter Property="FontSize" Value="18"/><Setter Property="Margin" Value="0,5,0,5"/><Setter Property="TextWrapping" Value="Wrap"/></Style>
+                            <Style TargetType="TextBox"><Setter Property="FontSize" Value="20"/><Setter Property="Padding" Value="8"/><Setter Property="Margin" Value="0,0,0,8"/></Style>
+                            <Style TargetType="PasswordBox"><Setter Property="FontSize" Value="24"/><Setter Property="Padding" Value="8"/><Setter Property="Margin" Value="0,0,0,8"/><EventSetter Event="GotKeyboardFocus" Handler="PinFocus"/></Style>
+                            <Style TargetType="Button"><Setter Property="FontSize" Value="18"/><Setter Property="Padding" Value="14,10"/><Setter Property="Margin" Value="0,8,0,8"/></Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="35"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Adgang og automatisk lås" FontSize="23" FontWeight="Bold"/>
+                            <TextBlock Text="Nuværende PIN-kode"/>
+                            <PasswordBox x:Name="CurrentPin" MaxLength="4"/>
+                            <TextBlock Text="Ny PIN-kode (4 cifre)"/>
+                            <PasswordBox x:Name="NewPin" MaxLength="4"/>
+                            <TextBlock Text="Gentag ny PIN-kode"/>
+                            <PasswordBox x:Name="ConfirmPin" MaxLength="4"/>
+                            <UniformGrid Columns="6">
+                                <Button Content="1" Click="PinNumber"/><Button Content="2" Click="PinNumber"/><Button Content="3" Click="PinNumber"/><Button Content="4" Click="PinNumber"/><Button Content="5" Click="PinNumber"/><Button Content="⌫" Click="PinBackspace"/>
+                                <Button Content="6" Click="PinNumber"/><Button Content="7" Click="PinNumber"/><Button Content="8" Click="PinNumber"/><Button Content="9" Click="PinNumber"/><Button Content="0" Click="PinNumber"/>
+                            </UniformGrid>
+                            <Button Content="Skift PIN-kode" Click="ChangePin"/>
+                            <CheckBox Content="Lås automatisk efter inaktivitet" FontSize="18" Margin="0,15,0,10" IsChecked="{Binding Settings.AutoLockEnabled}"/>
+                            <TextBlock Text="Antal minutter (1–120)"/>
+                            <TextBox x:Name="LockMinutes" Text="{Binding Settings.AutoLockMinutes, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                            <TextBlock Text="Låsning lukker redigering. Aktiviteterne bliver ved med at være åbne eller lukkede som før." Foreground="#555555"/>
+                            <Button Content="Luk alle lokationer" Command="{Binding CloseAllLocationsCommand}"/>
+                            <TextBlock Text="Gælder det viste tema. Valgt aktivitet og medarbejder bevares." Foreground="#555555"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Backup og gendannelse" FontSize="23" FontWeight="Bold"/>
+                            <TextBlock Text="Der gemmes automatisk en backup før hver sletning. Du kan også gemme en selv."/>
+                            <Button Content="Opret backup nu" Command="{Binding CreateBackupCommand}"/>
+                            <ListBox ItemsSource="{Binding Backups}" SelectedItem="{Binding SelectedBackup}" DisplayMemberPath="DisplayName" Height="150" FontSize="17"/>
+                            <Button Content="Gendan valgt backup…" Command="{Binding RestoreBackupCommand}"/>
+                            <TextBlock Text="Gendannelse omfatter alle temaer og deres data samt billeder. PIN-kode og kontaktoplysninger ændres ikke." Foreground="#555555"/>
+                            <TextBlock Text="Kontakt til udvikleren" FontSize="23" FontWeight="Bold" Margin="0,20,0,8"/>
+                            <TextBlock Text="Navn" Foreground="#555555"/>
+                            <TextBlock Text="Janick Nygaard Rasmussen" FontSize="20" Margin="0,0,0,12"/>
+                            <TextBlock Text="Telefon" Foreground="#555555"/>
+                            <TextBlock Text="51335062" FontSize="20" Margin="0,0,0,12"/>
+                            <TextBlock Text="E-mail" Foreground="#555555"/>
+                            <TextBlock Text="Ikke oplyst endnu" FontSize="20" Margin="0,0,0,12"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+                <StackPanel Grid.Row="2" Margin="0,15,0,0">
+                    <TextBlock Text="{Binding SettingsMessage}" FontSize="18" TextWrapping="Wrap" Foreground="#245C43" Margin="0,0,0,8"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Gem indstillinger" FontSize="19" Padding="20,12" Margin="0,0,12,0" Command="{Binding SaveSettingsCommand}">
+                            <Button.Style><Style TargetType="Button"><Style.Triggers><DataTrigger Binding="{Binding ElementName=LockMinutes, Path=(Validation.HasError)}" Value="True"><Setter Property="IsEnabled" Value="False"/></DataTrigger></Style.Triggers></Style></Button.Style>
+                        </Button>
+                        <Button Content="Tilbage" FontSize="19" Padding="20,12" Command="{Binding ShowAdministrationPopupCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

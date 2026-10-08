@@ -68,6 +68,7 @@
 
                 <Button Grid.Row="5"
                         Content="⚙  Indstillinger"
+                        Command="{Binding ShowSettingsPopupCommand}"
                         Height="70"
                         FontSize="24"
                         Margin="0,10"/>

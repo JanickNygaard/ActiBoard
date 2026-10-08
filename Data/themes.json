@@ -1,32 +1,38 @@
-﻿[
-  {
-    "id": "default",
-    "name": "Hverdag",
-    "isActive": true
-  },
-  {
-    "id": "halloween",
-    "name": "Halloween",
-    "isActive": false
-  },
-  {
-    "id": "rekorduge",
-    "name": "Rekorduge",
-    "isActive": false
-  },
-  {
-    "id": "fastelavn",
-    "name": "Fastelavn",
-    "isActive": false
-  },
-  {
-    "id": "åbenthus",
-    "name": "Åbent hus",
-    "isActive": false
-  },
-  {
-    "id": "juleklippedag",
-    "name": "Juleklippedag",
-    "isActive": false
-  }
+[
+    {
+        "id":  "default",
+        "name":  "Hverdag",
+        "isActive":  true,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Hverdag-aktiviteter.png"
+    },
+    {
+        "id":  "halloween",
+        "name":  "Halloween",
+        "isActive":  false,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Halloween.png"
+    },
+    {
+        "id":  "rekorduge",
+        "name":  "Rekorduge",
+        "isActive":  false,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Rekorduge.png"
+    },
+    {
+        "id":  "fastelavn",
+        "name":  "Fastelavn",
+        "isActive":  false,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Fastelavn.png"
+    },
+    {
+        "id":  "åbenthus",
+        "name":  "Åbent hus",
+        "isActive":  false,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Aabent-hus.png"
+    },
+    {
+        "id":  "juleklippedag",
+        "name":  "Juleklippedag",
+        "isActive":  false,
+        "backgroundImagePath":  "/Images/Gallery/Themes/Juleklippedag.png"
+    }
 ]

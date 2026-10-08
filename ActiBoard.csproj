@@ -110,5 +110,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Resource Include="Images\Gallery\Themes\*.png" />
+    <Resource Include="Images\ThemeFrames\*.png" />
+    <Resource Include="Images\Activities\Realistic\*.png" />
   </ItemGroup>
 </Project>

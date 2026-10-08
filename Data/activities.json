@@ -1,7 +1,7 @@
 [
   {
     "name": "Stikbold",
-    "activityImagePath": "/Images/Activities/Stikbold-klassisk.png",
+    "activityImagePath": "/Images/Activities/Realistic/Stikbold.PNG",
     "locationNames": [
       "Gymnastiksal 1",
       "Gymnastiksal 2"
@@ -9,14 +9,14 @@
   },
   {
     "name": "Perler",
-    "activityImagePath": "/Images/Activities/Perler.png",
+    "activityImagePath": "/Images/Activities/Realistic/Perler.png",
     "locationNames": [
       "Kreaværksted"
     ]
   },
   {
     "name": "Snobrød",
-    "activityImagePath": "/Images/Activities/Snobroed.png",
+    "activityImagePath": "/Images/Activities/Realistic/Snobrød.png",
     "locationNames": [
       "Byggeren"
     ]
