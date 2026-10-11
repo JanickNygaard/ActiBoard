@@ -81,6 +81,7 @@
     <Resource Include="Images\Activities\Tegne.png" />
     <Resource Include="Images\Employees\Janick.PNG" />
     <Resource Include="Images\Employees\Sofie.PNG" />
+    <Resource Include="Images\Employees\Studerende.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -112,6 +113,8 @@
     </Content>
     <Resource Include="Images\Gallery\Themes\*.png" />
     <Resource Include="Images\ThemeFrames\*.png" />
+    <Resource Include="Images\ActiBoard-logo.png" />
+    <Resource Include="Images\Navigation\*.png" />
     <Resource Include="Images\Activities\Realistic\*.png" />
   </ItemGroup>
 </Project>

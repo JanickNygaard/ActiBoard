@@ -22,6 +22,12 @@
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
+                        <DataTrigger Binding="{Binding CurrentPopup}" Value="{x:Static model:PopupType.EmployeePicker}">
+                            <Setter Property="Content"><Setter.Value><controls:EmployeePickerPopup/></Setter.Value></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentPopup}" Value="{x:Static model:PopupType.ActivityPicker}">
+                            <Setter Property="Content"><Setter.Value><controls:ActivityPickerPopup/></Setter.Value></Setter>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding CurrentPopup}" Value="{x:Static model:PopupType.Settings}">
                             <Setter Property="Content">
                                 <Setter.Value><controls:SettingsPopup/></Setter.Value>

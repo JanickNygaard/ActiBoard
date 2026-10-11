@@ -20,6 +20,14 @@ public sealed class OutlinedTextBlock : Control
     }
 
     private static readonly Pen Outline = CreateOutline();
+    public static readonly DependencyProperty BackgroundCornerRadiusProperty = DependencyProperty.Register(
+        nameof(BackgroundCornerRadius), typeof(double), typeof(OutlinedTextBlock),
+        new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender));
+    public double BackgroundCornerRadius
+    {
+        get => (double)GetValue(BackgroundCornerRadiusProperty);
+        set => SetValue(BackgroundCornerRadiusProperty, value);
+    }
     private static Pen CreateOutline()
     {
         var pen = new Pen(Brushes.Black, 2) { LineJoin = PenLineJoin.Round };
@@ -41,7 +49,7 @@ public sealed class OutlinedTextBlock : Control
     protected override void OnRender(DrawingContext drawingContext)
     {
         base.OnRender(drawingContext);
-        if (Background is not null) drawingContext.DrawRectangle(Background, null, new Rect(RenderSize));
+        if (Background is not null) drawingContext.DrawRoundedRectangle(Background, null, new Rect(RenderSize), BackgroundCornerRadius, BackgroundCornerRadius);
         if (string.IsNullOrEmpty(Text)) return;
         var text = FormatText();
         var geometry = text.BuildGeometry(new Point(Padding.Left + 1, Padding.Top + 1));

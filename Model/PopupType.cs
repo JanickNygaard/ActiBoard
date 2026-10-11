@@ -25,6 +25,8 @@ namespace ActiBoard.Model
         Settings,
         Confirmation,
         ImageGallery,
+        ActivityPicker,
+        EmployeePicker,
         
     }
 }

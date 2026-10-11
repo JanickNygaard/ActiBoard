@@ -1,7 +1,7 @@
 [
     {
         "id":  "default",
-        "name":  "Hverdag",
+        "name":  "Dagens aktiviteter",
         "isActive":  true,
         "backgroundImagePath":  "/Images/Gallery/Themes/Hverdag-aktiviteter.png"
     },

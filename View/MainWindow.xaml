@@ -12,14 +12,26 @@
         Height="1080"
         Width="1920">
 
-    <Window.Resources>
+    <Window.Resources><view:ThemeIconConverter x:Key="ThemeIconConverter"/>
         <view:EmployeeSelectionConverter x:Key="EmployeeSelectionConverter"/>
+        <Style x:Key="TransparentImageButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="130"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -28,7 +40,8 @@
        Source="{Binding ActiveTheme.BackgroundImagePath}"
        Stretch="UniformToFill"/>
 
-        <controls:AnimatedThemeFrame Grid.RowSpan="2"
+        <controls:AnimatedThemeFrame Grid.RowSpan="2" ShowFrame="False"
+                                     BackgroundColor="{Binding ActiveTheme.BackgroundColor}"
                                      ThemeId="{Binding ActiveTheme.Id}"
                                      IsHitTestVisible="False"/>
 
@@ -102,32 +115,25 @@
                     </Button.Style>
                 </Button>
 
-                <TextBlock Text="{Binding ActiveTheme.Name}"
-                           FontSize="60"
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+ <Image Width="64" Height="64" Stretch="Uniform" Margin="0,0,16,0" Source="{Binding ActiveTheme.Id, Converter={StaticResource ThemeIconConverter}}">
+  <Image.Style><Style TargetType="Image"><Style.Triggers><Trigger Property="Source" Value="{x:Null}"><Setter Property="Visibility" Value="Collapsed"/></Trigger></Style.Triggers></Style></Image.Style>
+ </Image><TextBlock Text="{Binding ActiveTheme.Name}"
+                           Foreground="{Binding ActiveTheme.TitleForeground}" FontSize="60"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Margin="0,56,40,12">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="#172536"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ActiveTheme.Id}" Value="halloween">
-                                    <Setter Property="Foreground" Value="#FFF8EF"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding ActiveTheme.Id}" Value="juleklippedag">
-                                    <Setter Property="Foreground" Value="#FFF8EF"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
+                           Margin="0">
+                    
                     <TextBlock.Effect>
                         <DropShadowEffect Color="Black"
                                           BlurRadius="6"
                                           ShadowDepth="0"
                                           Opacity="0.25"/>
                     </TextBlock.Effect>
-                </TextBlock>
+                </TextBlock><Image Width="64" Height="64" Stretch="Uniform" Margin="16,0,0,0" Source="{Binding ActiveTheme.Id, Converter={StaticResource ThemeIconConverter}}">
+  <Image.Style><Style TargetType="Image"><Style.Triggers><Trigger Property="Source" Value="{x:Null}"><Setter Property="Visibility" Value="Collapsed"/></Trigger></Style.Triggers></Style></Image.Style>
+ </Image></StackPanel>
 
 
 
@@ -138,7 +144,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Margin="0,10,40,10">
-                    <Image Source="/Images/KTM LOGO.png"
+                    <Image Source="pack://application:,,,/ActiBoard;component/Images/ActiBoard-logo.png" Width="300"
                            Height="80"
                            Stretch="Uniform"/>
                 </Border>
@@ -149,7 +155,7 @@
 
         <!-- Lokationerne -->
         <ItemsControl Grid.Row="1"
-                      Margin="44,0,44,44"
+                      Margin="12,0,12,12"
                       ItemsSource="{Binding Locations}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -190,7 +196,7 @@
                             </Style>
                         </Border.Style>
 
-                        <Grid>
+                        <controls:RoundedLocationGrid>
 
                             <!-- KUN DENNE BUTTON TOGGLER -->
                             <Button x:Name="ToggleButton"
@@ -207,21 +213,17 @@
                             Padding="0">
 
                                 <Grid>
-                                    <Image Source="{Binding LocationImagePath}"
-                           Stretch="UniformToFill"/>
+                                    <Image Source="{Binding LocationImagePath}" Stretch="UniformToFill"/>
 
-                                    <Rectangle x:Name="Overlay" Fill="#88000000"/>
+                                    <Rectangle x:Name="Overlay" Fill="#BF000000"/>
 
-                                    <controls:OutlinedTextBlock Text="{Binding Name}"
-                               FontSize="38"
-                               FontWeight="Bold"
-                               Foreground="White"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Margin="0,20,0,0"/>
+                                    <Border Background="#85000000" CornerRadius="12" Padding="18,5" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="12,16,12,0">
+ <controls:OutlinedTextBlock Text="{Binding Name}" FontSize="38" FontWeight="Bold" Foreground="White"/>
+</Border>
 
                                     <controls:OutlinedTextBlock x:Name="StatusBadge"
-                               FontSize="26"
+                               FontSize="32"
+                               BackgroundCornerRadius="12"
                                FontWeight="Bold"
                                Foreground="White"
                                HorizontalAlignment="Center"
@@ -236,12 +238,12 @@
                                         <controls:OutlinedTextBlock.Style>
                                             <Style TargetType="controls:OutlinedTextBlock">
                                                 <Setter Property="Text" Value="🔒 LUKKET"/>
-                                                <Setter Property="Background" Value="#CCB00020"/>
-                                                <Setter Property="Padding" Value="20,8"/>
+                                                <Setter Property="Background" Value="#B00020"/>
+                                                <Setter Property="Padding" Value="28,10"/>
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsOpen}" Value="True">
                                                         <Setter Property="Text" Value="🔓 ÅBEN"/>
-                                                        <Setter Property="Background" Value="#CC2E8B35"/>
+                                                        <Setter Property="Background" Value="#16763A"/>
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -260,13 +262,13 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0">
-                                    <controls:OutlinedTextBlock Text="Aktivitet"
-                               Foreground="White"
-                               FontSize="22"
-                               FontWeight="Bold"/>
+                                    
 
                                     <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="ActivityImage"
+                                        <Button Style="{StaticResource TransparentImageButton}" Background="Transparent" BorderThickness="0" Padding="0"
+ IsEnabled="{Binding DataContext.IsUnlocked, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ Command="{Binding DataContext.ShowActivityPickerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ CommandParameter="{Binding}" AutomationProperties.Name="Vælg aktivitet"><Image x:Name="ActivityImage"
                                                Width="140"
                                         Height="140"
                                         Stretch="UniformToFill"
@@ -286,29 +288,30 @@
                                                     </BeginStoryboard>
                                                 </EventTrigger>
                                             </Image.Triggers>
-                                        </Image>
+                                        </Image></Button>
 
-                                        <ComboBox x:Name="ActivityComboBox"
-                                                  IsEnabled="{Binding DataContext.IsUnlocked,
-                                                    RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                  
-                                  ItemsSource="{Binding AvailableActivities}"
-                                  SelectedItem="{Binding CurrentActivity}"
-                                  DisplayMemberPath="Name"
-                                  Width="260"
-                                  Height="45"
-                                  FontSize="20"/>
+                                        <StackPanel VerticalAlignment="Center"><Border x:Name="ActivityLabel" Background="#85000000" CornerRadius="9" Padding="10,4" HorizontalAlignment="Left" Margin="0,0,0,4"><controls:OutlinedTextBlock Text="Aktivitet" Foreground="White" FontSize="25" FontWeight="Bold"/></Border><Button x:Name="ActivityComboBox"
+ IsEnabled="{Binding DataContext.IsUnlocked, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ Command="{Binding DataContext.ShowActivityPickerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ CommandParameter="{Binding}" Width="260" Height="45" VerticalAlignment="Center" FontSize="20" Padding="8,2">
+ <TextBlock TextTrimming="CharacterEllipsis" TextAlignment="Center">
+  <TextBlock.Style><Style TargetType="TextBlock">
+   <Setter Property="Text" Value="{Binding CurrentActivity.Name}"/>
+   <Style.Triggers><DataTrigger Binding="{Binding CurrentActivity}" Value="{x:Null}"><Setter Property="Text" Value="Vælg aktivitet…"/></DataTrigger></Style.Triggers>
+  </Style></TextBlock.Style>
+ </TextBlock>
+</Button></StackPanel>
                                     </StackPanel>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
-                                    <controls:OutlinedTextBlock Text="Ansvarlig"
-                               Foreground="White"
-                               FontSize="22"
-                               FontWeight="Bold"/>
+                                    
 
                                     <StackPanel Orientation="Horizontal">
-                                        <Image x:Name="EmployeeImage"
+                                        <Button Style="{StaticResource TransparentImageButton}" Background="Transparent" BorderThickness="0" Padding="0"
+ IsEnabled="{Binding DataContext.IsUnlocked, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ Command="{Binding DataContext.ShowEmployeePickerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ CommandParameter="{Binding}" AutomationProperties.Name="Vælg ansvarlig"><Image x:Name="EmployeeImage"
                                             Width="140"
                                         Height="140"
                                         Stretch="UniformToFill"
@@ -328,30 +331,32 @@
                                                     </BeginStoryboard>
                                                 </EventTrigger>
                                             </Image.Triggers>
-                                        </Image>
+                                        </Image></Button>
 
-                                        <ComboBox x:Name="EmployeeComboBox"
-                                                  IsEnabled="{Binding DataContext.IsUnlocked,
-                    RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                            
-                                            ItemsSource="{Binding DataContext.EmployeeDropdownOptions,
-                                                        RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                  SelectedItem="{Binding ResponsibleEmployee, Mode=TwoWay, Converter={StaticResource EmployeeSelectionConverter}}"
-                                  DisplayMemberPath="Name"
-                                  Width="260"
-                                  Height="45"
-                                  FontSize="20"/>
+                                        <StackPanel VerticalAlignment="Center"><Border x:Name="EmployeeLabel" Background="#85000000" CornerRadius="9" Padding="10,4" HorizontalAlignment="Left" Margin="0,0,0,4"><controls:OutlinedTextBlock Text="Ansvarlig" Foreground="White" FontSize="25" FontWeight="Bold"/></Border><Button x:Name="EmployeeComboBox"
+ IsEnabled="{Binding DataContext.IsUnlocked, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ Command="{Binding DataContext.ShowEmployeePickerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+ CommandParameter="{Binding}" Width="260" Height="45" VerticalAlignment="Center" FontSize="20" Padding="8,2">
+ <TextBlock TextTrimming="CharacterEllipsis" TextAlignment="Center">
+  <TextBlock.Style><Style TargetType="TextBlock">
+   <Setter Property="Text" Value="{Binding ResponsibleEmployee.Name}"/>
+   <Style.Triggers><DataTrigger Binding="{Binding ResponsibleEmployee}" Value="{x:Null}"><Setter Property="Text" Value="Vælg ansvarlig…"/></DataTrigger></Style.Triggers>
+  </Style></TextBlock.Style>
+ </TextBlock>
+</Button></StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
 
-                        </Grid>
+                        </controls:RoundedLocationGrid>
                     </Border>
                     <DataTemplate.Triggers>
 
                         <DataTrigger Binding="{Binding DataContext.DashboardColumns,
                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
              Value="3">
+
+
 
                             <Setter TargetName="LocationCard"
             Property="Margin"
@@ -497,7 +502,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="Overlay"
                                     Storyboard.TargetProperty="Fill.Color"
-                                    To="#88000000"
+                                    To="#BF000000"
                                     Duration="0:0:0.25"/>
                                     </Storyboard>
                                 </BeginStoryboard>

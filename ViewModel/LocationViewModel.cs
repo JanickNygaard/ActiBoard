@@ -445,6 +445,8 @@ namespace ActiBoard.ViewModel
         {
             InitializeSettings(settingsDirectory);
             InitializeImageGallery();
+            InitializeActivityPicker();
+            InitializeEmployeePicker();
             // Temaerne skal indlæses først
             _themeRepository = new ThemeRepository();
 
@@ -1175,10 +1177,12 @@ namespace ActiBoard.ViewModel
             {
                 ThemeEditorName = "";
                 ThemeEditorBackgroundImagePath = "";
+                ThemeEditorBackgroundColor = "";
                 return;
             }
 
             ThemeEditorName = SelectedTheme.Name;
+            ThemeEditorBackgroundColor = SelectedTheme.BackgroundColor;
             ThemeEditorBackgroundImagePath = 
                 SelectedTheme.BackgroundImagePath;
         }
@@ -1213,7 +1217,8 @@ namespace ActiBoard.ViewModel
                 Theme newTheme = new Theme
                 {
                     Name = name,
-                    BackgroundImagePath = ThemeEditorBackgroundImagePath
+                    BackgroundImagePath = ThemeEditorBackgroundImagePath,
+                    BackgroundColor = ThemeEditorBackgroundColor
                 };
 
                 _themeRepository.Add(newTheme);
@@ -1222,6 +1227,7 @@ namespace ActiBoard.ViewModel
             else
             {
                 SelectedTheme.Name = name;
+                SelectedTheme.BackgroundColor = ThemeEditorBackgroundColor;
                 SelectedTheme.BackgroundImagePath =
                     ThemeEditorBackgroundImagePath;
 

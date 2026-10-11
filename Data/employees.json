@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "name": "Sofie",
     "employeeImagePath": "/Images/Employees/Sofie.PNG"
@@ -6,5 +6,9 @@
   {
     "name": "Janick",
     "employeeImagePath": "/Images/Employees/Janick.PNG"
+  },
+  {
+    "name": "Studerende",
+    "employeeImagePath": "/Images/Employees/Studerende.png"
   }
 ]

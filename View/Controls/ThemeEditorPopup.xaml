@@ -1,10 +1,11 @@
 <UserControl x:Class="ActiBoard.View.Controls.ThemeEditorPopup"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:ActiBoard.View.Controls">
 
     <Grid Background="#66000000">
 
-        <Border Width="560"
+        <Border Width="680"
                 Background="White"
                 CornerRadius="25"
                 Padding="30"
@@ -61,15 +62,28 @@
            FontSize="20"
            FontWeight="Bold"
            Margin="0,20,0,8"/>
+                    <TextBlock Text="Baggrundsfarve" FontSize="18" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <ItemsControl ItemsSource="{Binding ThemeColorOptions}">
+                        <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate><DataTemplate>
+                            <Button Width="68" Height="44" Margin="3" Background="{Binding Color}" ToolTip="{Binding Name}" AutomationProperties.Name="{Binding Name}"
+                                    Command="{Binding DataContext.SelectThemeColorCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                        </DataTemplate></ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Content="Brug temaets standardfarve" Command="{Binding ResetThemeColorCommand}" Height="40" FontSize="17" Margin="0,8,0,12"/>
 
                     <Border Height="230"
         BorderBrush="#CCCCCC"
         BorderThickness="1"
         CornerRadius="10"
-        Background="#F3F3F3">
+        Background="{Binding ThemeEditorBackgroundPreview}">
 
-                        <Image Source="{Binding ThemeEditorBackgroundImagePath}"
-           Stretch="UniformToFill"/>
+                        <Grid ClipToBounds="True">
+                            <Image Source="{Binding ThemeEditorBackgroundImagePath}" Stretch="UniformToFill"/>
+                            <controls:AnimatedThemeFrame ShowFrame="False" ThemeId="{Binding SelectedTheme.Id, TargetNullValue='', FallbackValue=''}"
+                                                         BackgroundColor="{Binding ThemeEditorBackgroundColor}"
+                                                         IsHitTestVisible="False"/>
+                        </Grid>
                     </Border>
 
                     <StackPanel Orientation="Horizontal"

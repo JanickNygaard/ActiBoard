@@ -21,6 +21,22 @@ public sealed class AnimatedThemeFrame : FrameworkElement
     }
 
     private readonly Stopwatch _clock = new();
+    public static readonly DependencyProperty ShowFrameProperty = DependencyProperty.Register(
+        nameof(ShowFrame), typeof(bool), typeof(AnimatedThemeFrame),
+        new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.AffectsRender));
+    public bool ShowFrame
+    {
+        get => (bool)GetValue(ShowFrameProperty);
+        set => SetValue(ShowFrameProperty, value);
+    }
+    public static readonly DependencyProperty BackgroundColorProperty = DependencyProperty.Register(
+        nameof(BackgroundColor), typeof(string), typeof(AnimatedThemeFrame),
+        new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.AffectsRender));
+    public string BackgroundColor
+    {
+        get => (string)GetValue(BackgroundColorProperty);
+        set => SetValue(BackgroundColorProperty, value);
+    }
     private double _lastFrame;
     private bool _subscribed;
 
@@ -37,7 +53,7 @@ public sealed class AnimatedThemeFrame : FrameworkElement
 
     private void StartRendering()
     {
-        if (_subscribed) return;
+        if (_subscribed || !ShowFrame) return;
         _clock.Start();
         CompositionTarget.Rendering += RenderFrame;
         _subscribed = true;
@@ -87,8 +103,10 @@ public sealed class AnimatedThemeFrame : FrameworkElement
     {
         base.OnRender(dc);
         var theme = GetTheme(ThemeId);
-        if (theme is null || ActualWidth < 100 || ActualHeight < 100) return;
-        dc.DrawRectangle(Brush(theme.Background), null, new Rect(RenderSize));
+        if (ActualWidth < 100 || ActualHeight < 100) return;
+        string color = string.IsNullOrWhiteSpace(BackgroundColor) ? theme?.Background ?? "" : BackgroundColor;
+        if (!string.IsNullOrEmpty(color)) dc.DrawRectangle(Brush(color), null, new Rect(RenderSize));
+        if (theme is null || !ShowFrame) return;
         var images = GetImages(ThemeId);
         double inset = 24, width = ActualWidth - 2 * inset, height = ActualHeight - 2 * inset;
         double perimeter = 2 * (width + height);
@@ -111,7 +129,7 @@ public sealed class AnimatedThemeFrame : FrameworkElement
         }
     }
 
-    private static BitmapSource[] GetImages(string themeId)
+    internal static BitmapSource[] GetImages(string themeId)
     {
         if (Atlases.TryGetValue(themeId, out var cached)) return cached;
         string fileName = themeId == "åbenthus" ? "aabenthus" : themeId;
