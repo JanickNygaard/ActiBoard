@@ -2,6 +2,41 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <UserControl.Resources>
+        <DrawingImage x:Key="AktiviteterIcon">
+            <DrawingImage.Drawing><DrawingGroup>
+                <GeometryDrawing Geometry="M 3,22 A 18,18 0 1 1 34,34 M 19,4 L 19,13 10,20 3,17 M 19,13 L 29,19 26,29 14,29 10,20 M 14,29 L 10,37 M 26,29 L 31,36 M 29,19 L 36,16">
+                    <GeometryDrawing.Pen><Pen Brush="#326292" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="M 27,43 C 29,38 28,35 32,32 C 34,30 38,32 38,35 C 38,39 34,42 27,43 M 32,32 L 42,12 C 44,8 48,10 46,14 L 36,34">
+                    <GeometryDrawing.Pen><Pen Brush="#CB8B2B" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup></DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="MedarbejdereIcon">
+            <DrawingImage.Drawing><GeometryDrawing Geometry="M 18,3 A 8,8 0 1 1 18,19 A 8,8 0 1 1 18,3 M 4,42 L 4,33 C 4,20 32,20 32,33 L 32,42 Z M 36,9 A 7,7 0 1 1 36,23 A 7,7 0 1 1 36,9 M 35,27 C 44,27 47,31 47,37 L 47,42 36,42">
+                <GeometryDrawing.Pen><Pen Brush="#744991" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen>
+            </GeometryDrawing></DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="LokationerIcon">
+            <DrawingImage.Drawing><GeometryDrawing Geometry="M 24,45 C 18,38 7,25 7,18 A 17,17 0 1 1 41,18 C 41,25 30,38 24,45 Z M 24,10 A 7,7 0 1 1 24,24 A 7,7 0 1 1 24,10">
+                <GeometryDrawing.Pen><Pen Brush="#BD5827" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen>
+            </GeometryDrawing></DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="TemaerIcon">
+            <DrawingImage.Drawing><DrawingGroup>
+                <GeometryDrawing Geometry="M 20,8 L 20,5 Q 20,3 23,3 L 44,3 Q 47,3 47,6 L 47,28 Q 47,31 44,31 L 41,31"><GeometryDrawing.Pen><Pen Brush="#CB8B2B" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen></GeometryDrawing>
+                <GeometryDrawing Geometry="M 12,16 L 12,13 Q 12,11 15,11 L 36,11 Q 39,11 39,14 L 39,36 Q 39,39 36,39 L 33,39"><GeometryDrawing.Pen><Pen Brush="#744991" Thickness="2.5" StartLineCap="Round" EndLineCap="Round" LineJoin="Round"/></GeometryDrawing.Pen></GeometryDrawing>
+                <GeometryDrawing Geometry="M 6,19 L 28,19 Q 31,19 31,22 L 31,44 Q 31,47 28,47 L 6,47 Q 3,47 3,44 L 3,22 Q 3,19 6,19 Z"><GeometryDrawing.Pen><Pen Brush="#326292" Thickness="2.5" LineJoin="Round"/></GeometryDrawing.Pen></GeometryDrawing>
+            </DrawingGroup></DrawingImage.Drawing>
+        </DrawingImage>
+        <DrawingImage x:Key="IndstillingerIcon">
+            <DrawingImage.Drawing><DrawingGroup>
+                <GeometryDrawing Geometry="M 3,9 L 10,9 M 22,9 L 45,9 M 3,24 L 29,24 M 41,24 L 45,24 M 3,39 L 14,39 M 26,39 L 45,39"><GeometryDrawing.Pen><Pen Brush="#333333" Thickness="2.5" StartLineCap="Round" EndLineCap="Round"/></GeometryDrawing.Pen></GeometryDrawing>
+                <GeometryDrawing Geometry="M 16,3 A 6,6 0 1 1 16,15 A 6,6 0 1 1 16,3 M 35,18 A 6,6 0 1 1 35,30 A 6,6 0 1 1 35,18 M 20,33 A 6,6 0 1 1 20,45 A 6,6 0 1 1 20,33"><GeometryDrawing.Pen><Pen Brush="#126779" Thickness="2.5"/></GeometryDrawing.Pen></GeometryDrawing>
+            </DrawingGroup></DrawingImage.Drawing>
+        </DrawingImage>
+    </UserControl.Resources>
     <Grid Background="#66000000">
         <Border Width="560"
                 Background="White"
@@ -42,31 +77,31 @@
                         Height="70"
                         FontSize="24"
                         Margin="0,10"
-                        Command="{Binding ShowActivityManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="pack://application:,,,/ActiBoard;component/Images/Navigation/Aktiviteter.png" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Aktiviteter" VerticalAlignment="Center"/></StackPanel></Button>
+                        Command="{Binding ShowActivityManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="{StaticResource AktiviteterIcon}" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Aktiviteter" VerticalAlignment="Center"/></StackPanel></Button>
 
                 <Button Grid.Row="2"
                         Height="70"
                         FontSize="24"
                         Margin="0,10"
-                        Command="{Binding ShowEmployeeManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="pack://application:,,,/ActiBoard;component/Images/Navigation/Medarbejdere.png" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Medarbejdere" VerticalAlignment="Center"/></StackPanel></Button>
+                        Command="{Binding ShowEmployeeManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="{StaticResource MedarbejdereIcon}" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Medarbejdere" VerticalAlignment="Center"/></StackPanel></Button>
 
                 <Button Grid.Row="3"
                         Height="70"
                         FontSize="24"
                         Margin="0,10"
-                        Command="{Binding ShowLocationManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="pack://application:,,,/ActiBoard;component/Images/Navigation/Lokationer.png" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Lokationer" VerticalAlignment="Center"/></StackPanel></Button>
+                        Command="{Binding ShowLocationManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="{StaticResource LokationerIcon}" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Lokationer" VerticalAlignment="Center"/></StackPanel></Button>
 
                 <Button Grid.Row="4"
                         Height="70"
                         FontSize="24"
                         Margin="0,10"
-                        Command="{Binding ShowThemeManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="pack://application:,,,/ActiBoard;component/Images/Navigation/Temaer.png" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Temaer" VerticalAlignment="Center"/></StackPanel></Button>
+                        Command="{Binding ShowThemeManagerPopupCommand}"><StackPanel Orientation="Horizontal"><Image Source="{StaticResource TemaerIcon}" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Temaer" VerticalAlignment="Center"/></StackPanel></Button>
 
                 <Button Grid.Row="5"
                         Command="{Binding ShowSettingsPopupCommand}"
                         Height="70"
                         FontSize="24"
-                        Margin="0,10"><StackPanel Orientation="Horizontal"><Image Source="pack://application:,,,/ActiBoard;component/Images/Navigation/Indstillinger.png" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Indstillinger" VerticalAlignment="Center"/></StackPanel></Button>
+                        Margin="0,10"><StackPanel Orientation="Horizontal"><Image Source="{StaticResource IndstillingerIcon}" Width="46" Height="46" Stretch="Uniform" Margin="0,0,16,0"/><TextBlock Text="Indstillinger" VerticalAlignment="Center"/></StackPanel></Button>
             </Grid>
         </Border>
     </Grid>

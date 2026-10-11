@@ -118,20 +118,13 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
  <Image Width="64" Height="64" Stretch="Uniform" Margin="0,0,16,0" Source="{Binding ActiveTheme.Id, Converter={StaticResource ThemeIconConverter}}">
   <Image.Style><Style TargetType="Image"><Style.Triggers><Trigger Property="Source" Value="{x:Null}"><Setter Property="Visibility" Value="Collapsed"/></Trigger></Style.Triggers></Style></Image.Style>
- </Image><TextBlock Text="{Binding ActiveTheme.Name}"
-                           Foreground="{Binding ActiveTheme.TitleForeground}" FontSize="60"
+ </Image><controls:OutlinedTextBlock Text="{Binding ActiveTheme.Name}"
+                           Foreground="{Binding ActiveTheme.TitleForeground}"
+                           FontSize="60"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Margin="0">
-                    
-                    <TextBlock.Effect>
-                        <DropShadowEffect Color="Black"
-                                          BlurRadius="6"
-                                          ShadowDepth="0"
-                                          Opacity="0.25"/>
-                    </TextBlock.Effect>
-                </TextBlock><Image Width="64" Height="64" Stretch="Uniform" Margin="16,0,0,0" Source="{Binding ActiveTheme.Id, Converter={StaticResource ThemeIconConverter}}">
+                           Margin="0"/><Image Width="64" Height="64" Stretch="Uniform" Margin="16,0,0,0" Source="{Binding ActiveTheme.Id, Converter={StaticResource ThemeIconConverter}}">
   <Image.Style><Style TargetType="Image"><Style.Triggers><Trigger Property="Source" Value="{x:Null}"><Setter Property="Visibility" Value="Collapsed"/></Trigger></Style.Triggers></Style></Image.Style>
  </Image></StackPanel>
 
@@ -139,6 +132,8 @@
 
 
                 <Border Background="White"
+                        BorderBrush="Black"
+                        BorderThickness="2"
                         CornerRadius="12"
                         Padding="20,10"
                         HorizontalAlignment="Right"
